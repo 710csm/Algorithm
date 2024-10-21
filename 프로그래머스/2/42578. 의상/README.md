@@ -1,6 +1,6 @@
 # [level 2] 의상 - 42578 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42578?language=swift) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42578?language=python3) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 10월 21일 15:10:28
+2024년 10월 21일 15:10:50
 
 ### 문제 설명
 
