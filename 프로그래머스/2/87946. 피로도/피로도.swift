@@ -1,28 +1,22 @@
 import Foundation
 
 func solution(_ k: Int, _ dungeons: [[Int]]) -> Int {
-    var visited = [Bool](repeating: false, count: dungeons.count)
-    return dfs(dungeons, &visited, k, 0)
-}
-
-func dfs(_ dungeons: [[Int]], _ visited: inout [Bool], _ k: Int, _ count: Int) -> Int {
-    // 현재 탐험 가능한 던전 수로 초기화
-    var maxCount = count
+    let n = dungeons.count
+    // 던전들을 필요 체력에 따라 정렬합니다.
+    let sortedDungeons = dungeons.sorted { $0[0] - $0[1] < $1[0] - $1[1] }
     
-    // 모든 던전에 대해 탐험 가능 여부 확인
-    for i in 0..<dungeons.count {
-        // 던전을 방문하지 않았고 현재 체력으로 탐험 가능한 경우
-        if !visited[i] && dungeons[i][0] <= k {
-            // 던전 방문 처리
-            visited[i] = true
-            
-            // 체력 소모 후 다시 탐색
-            maxCount = max(maxCount, dfs(dungeons, &visited, k - dungeons[i][1], count + 1))
-            
-            // 던전 방문 처리 해제
-            visited[i] = false
+    // DP 테이블 초기화
+    var dp = Array(repeating: Array(repeating: 0, count: k + 1), count: n + 1)
+
+    for i in 1...n {
+        for r in 1...k {
+            if sortedDungeons[i - 1][0] > r {
+                dp[i][r] = dp[i - 1][r]
+            } else {
+                dp[i][r] = max(dp[i - 1][r], 1 + dp[i - 1][r - sortedDungeons[i - 1][1]])
+            }
         }
     }
     
-    return maxCount
+    return dp[n][k]
 }
