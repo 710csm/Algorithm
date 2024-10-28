@@ -9,7 +9,7 @@ func solution(_ priorities:[Int], _ location:Int) -> Int {
         index.append(i)
     }
     
-    while(true) {
+    while true {
         // 큐에서 우선순위가 제일 높은 프로세스일 때
         if priorityList[0] == priorityList.max() {
             // 몇 번째로 실행되는지 알고싶은 프로세스의 위치와 현재 프로세스가 일치할 경우
