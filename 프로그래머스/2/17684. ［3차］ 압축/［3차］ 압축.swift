@@ -1,15 +1,14 @@
 import Foundation
 
 func solution(_ msg: String) -> [Int] {
-    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     var dict: [String: Int] = [:]
     var result: [Int] = []
     var msg = Array(msg)
     
     
     // 사전 초기화
-    for (index, c) in alphabet.enumerated() {
-        dict[String(c)] = index + 1
+    for i in (1...26) {
+        dict[String(UnicodeScalar(i + 64)!)] = i
     }
     
     var index = 0
