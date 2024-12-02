@@ -1,10 +1,10 @@
 # [level 2] 방문 길이 - 49994 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/49994?language=swift) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/49994?language=java) 
 
 ### 성능 요약
 
-메모리: 16.3 MB, 시간: 0.40 ms
+메모리: 52.7 MB, 시간: 0.28 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 11월 21일 14:23:23
+2024년 12월 02일 15:31:01
 
 ### 문제 설명
 
