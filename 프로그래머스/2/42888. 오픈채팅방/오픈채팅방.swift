@@ -2,7 +2,7 @@ import Foundation
 
 func solution(_ record: [String]) -> [String] {
     var user: [String: String] = [:]
-    var isEnter: [[String: Bool]] = []
+    var enterList: [[String: Bool]] = []
     var result: [String] = []
     
     for enter in record {
@@ -12,16 +12,16 @@ func solution(_ record: [String]) -> [String] {
         if split[0] == "Enter" {
             let name = split[2]
             user[uid] = name
-            isEnter.append([uid : true])
+            enterList.append([uid : true])
         } else if split[0] == "Leave" {
-            isEnter.append([uid : false])
+            enterList.append([uid : false])
         } else if split[0] == "Change" {
             let name = split[2]
             user[uid] = name
         }
     }
     
-    for enter in isEnter {
+    for enter in enterList {
         for (uid, isEnter) in enter {
             if isEnter {
                 result.append("\(user[uid]!)님이 들어왔습니다.")
