@@ -5,16 +5,12 @@ func solution(_ s: String) -> [Int] {
     var totalZeroCount: Int = 0
     var s = s
     
-    while true {
+    while s != "1" {
         totalZeroCount += s.filter({ $0 == "0"}).count
         task += 1
         
         let length = s.filter({ $0 == "1"}).count
         s = String(String(length, radix: 2))
-        
-        if s == "1" {
-            break
-        }
     }
     
     return [task, totalZeroCount]
