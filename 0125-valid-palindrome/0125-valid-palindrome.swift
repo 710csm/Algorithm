@@ -1,9 +1,8 @@
 class Solution {
     func isPalindrome(_ s: String) -> Bool {
-        let filterString = s.filter({ $0.isLetter || $0.isNumber })
-        let lowercasedString = filterString.lowercased()
+        let filterString = s.filter({ $0.isLetter || $0.isNumber }).lowercased()
         
-        if lowercasedString == String(lowercasedString.reversed()) {
+        if filterString == String(filterString.reversed()) {
             return true
         } else {
             return false
