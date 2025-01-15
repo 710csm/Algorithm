@@ -5,7 +5,7 @@ class Solution {
         
         for path in pathArr {
             if path == ".." {
-                if stack.count > 1 {
+                if !stack.isEmpty {
                     stack.removeLast()
                 }
             } else if path != "." {
