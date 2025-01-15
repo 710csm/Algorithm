@@ -22,9 +22,10 @@ class Solution {
             
             let sum = val1 + val2 + carry
             carry = sum / 10
-            current.next = ListNode(sum % 10)
             
+            current.next = ListNode(sum % 10)
             current = current.next!
+            
             node1 = node1?.next
             node2 = node2?.next
         }
