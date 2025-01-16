@@ -18,10 +18,25 @@ class Solution {
         guard let node = root else {
             return 0
         }
+        var result: Int = 0
+        var queue: [TreeNode?] = [root]
         
-        let leftDepth = maxDepth(node.left)
-        let rightDepth = maxDepth(node.right)
+        while !queue.isEmpty {
+            let count = queue.count
+            result += 1
+            
+            for _ in 0..<count {
+                let node = queue.removeFirst()
+                if let left = node?.left {
+                    queue.append(left)
+                }
+                
+                if let right = node?.right {
+                    queue.append(right)
+                }
+            }
+        }
         
-        return max(leftDepth, rightDepth) + 1
+        return result
     }
 }
