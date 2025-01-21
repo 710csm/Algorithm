@@ -5,18 +5,18 @@ class Solution {
         let numberArray = String(x).compactMap { Int(String($0)) }
         print(numberArray)
         var result: Bool = true
-        var i: Int = 0
-        var j: Int = numberArray.count - 1
+        var left: Int = 0
+        var right: Int = numberArray.count - 1
         
-        while i != j {
-            if numberArray[i] != numberArray[j] {
+        while left != right {
+            if numberArray[left] != numberArray[right] {
                 result = false
                 break
             }
-            i += 1
-            j -= 1
+            left += 1
+            right -= 1
             
-            if i > numberArray.count / 2 {
+            if left > numberArray.count / 2 {
                 break
             }
         }
