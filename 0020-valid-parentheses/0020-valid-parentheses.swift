@@ -14,6 +14,8 @@ class Solution {
                     stack.removeLast()
                 } else if stack.last! == "[" && c == "]" {
                     stack.removeLast()
+                } else {
+                    stack.append(c)
                 }
             }
         }
