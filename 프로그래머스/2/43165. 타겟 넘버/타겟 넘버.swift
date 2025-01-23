@@ -1,27 +1,13 @@
 import Foundation
 
 func solution(_ numbers:[Int], _ target: Int) -> Int {
-    return dfs(numbers: numbers, target: target, index: 0, sum: 0)
+    return dfs(numbers, 0, target, 0)
 }
 
-func dfs(numbers: [Int], target: Int, index: Int, sum: Int) -> Int {
+func dfs(_ numbers: [Int], _ index: Int, _ target: Int, _ sum: Int) -> Int{
     if index == numbers.count {
-        return sum == target ? 1 : 0
+        return target == sum ? 1 : 0
     }
     
-    let add = dfs(
-        numbers: numbers,
-        target: target,
-        index: index + 1,
-        sum: sum + numbers[index]
-    )
-    
-    let subtract = dfs(
-        numbers: numbers,
-        target: target,
-        index: index + 1,
-        sum: sum - numbers[index]
-    )
-    
-    return add + subtract
+    return dfs(numbers, index+1, target, sum + numbers[index]) + dfs(numbers, index+1, target, sum - numbers[index])
 }
