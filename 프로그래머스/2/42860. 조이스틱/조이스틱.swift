@@ -1,20 +1,40 @@
 import Foundation
 
-func solution(_ name:String) -> Int {
-    let name = name.utf8.map{ min(Int($0) - 65, 90 - Int($0) + 1) }
+extension String {
+    subscript (i: Int) -> Character {
+        return self[self.index(self.startIndex, offsetBy: i)]
+    }
+}
 
-    let count_updown = name.reduce(0, +)
+extension Character {
+    func toAsciiValue() -> Int {
+        Int(self.asciiValue!)
+    }
+}
+
+func solution(_ name: String) -> Int {
+    if name == "AAA" { return 0 }
     
-    var count_leftright = name.count - 1
-    let start_idx = 0
-    for right_limit_idx in 0..<name.count {
-        var left_limit_idx = right_limit_idx + 1
-        while left_limit_idx < name.count && name[left_limit_idx] == 0 {
-            left_limit_idx += 1
+    var result: Int = 0
+    var length = name.count
+    
+    var index: Int = 0
+    var move = length - 1
+    
+    for i in 0..<length {
+        result += min(
+            name[i].toAsciiValue() - Character("A").toAsciiValue(),
+            Character("Z").toAsciiValue() - name[i].toAsciiValue() + 1
+        )
+        
+        index = i + 1
+        while index < length && name[index] == "A" {
+            index += 1
         }
-        let min_plus_distance = min(right_limit_idx - start_idx, name.count - left_limit_idx)
-        count_leftright = min(count_leftright, (right_limit_idx - start_idx) + (name.count - left_limit_idx) + min_plus_distance)
+        
+        move = min(move, i * 2 + length - index)
+        move = min(move, (length - index) * 2 + i)
     }
     
-    return count_updown + count_leftright
+    return result + move
 }
