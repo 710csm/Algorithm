@@ -1,25 +1,58 @@
-
 class Trie {
     
-    private var wordList: Set<String>
+    class Node {
+        var children: [Character: Node]
+        var isEnd: Bool
+        
+        init() {
+            self.children = [:]
+            self.isEnd = false
+        }
+    }
+    
+    var root: Node
 
     init() {
-        self.wordList = []
+        self.root = Node()
     }
     
     func insert(_ word: String) {
-        wordList.insert(word)
+        var currentNode = self.root
+        for key in word {
+            if let nextNode = currentNode.children[key] {
+                currentNode = nextNode
+            } else {
+                let newNode = Node()
+                currentNode.children[key] = newNode
+                currentNode = newNode
+            }
+        }
+        
+        currentNode.isEnd = true
     }
     
     func search(_ word: String) -> Bool {
-        wordList.contains(word)
+        var currentNode = self.root
+        for key in word {
+            guard let nextNode = currentNode.children[key] else {
+                return false
+            }
+            currentNode = nextNode
+        }
+        return currentNode.isEnd
     }
     
     func startsWith(_ prefix: String) -> Bool {
-        wordList.filter({ $0.hasPrefix(prefix) }).count > 0
+        var currentNode = self.root
+        for key in prefix {
+            guard let nextNode = currentNode.children[key] else {
+                return false
+            }
+            currentNode = nextNode
+        }
+        return true
     }
 }
-
 /**
  * Your Trie object will be instantiated and called as such:
  * let obj = Trie()
