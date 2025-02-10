@@ -16,23 +16,21 @@
 class Solution {
     func getMinimumDifference(_ root: TreeNode?) -> Int {
         var arr: [Int] = []
-        var minmum = Int.max
+        var minimum = Int.max
         
         searchTree(root: root, &arr)
-        
-        arr.sort()
         
         for i in arr {
             for j in arr {
                 if i == j {
                     continue
                 } else {
-                    minmum = min(minmum, abs(i - j))
+                    minimum = min(minimum, abs(i - j))
                 }
             }
         }
         
-        return minmum
+        return minimum
     }
 
     func searchTree(root: TreeNode?, _ arr: inout [Int]) {
